@@ -1,0 +1,255 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    height: 100%;
+}
+
+#contenido{
+	width: 100%;
+	height: 100%;
+}
+
+#menu{
+	min-width:200px;
+	width: 15%;
+	height: 100%;
+    background: #FF8A00;
+	float:left;
+}
+
+#menu li{
+	width:100%;
+	float:left;
+	overflow:hidden;
+}
+
+#menu a{
+    color: white;
+    float: left;
+    height: 20px;
+    padding: 10px 30px;
+    text-decoration: none;
+    width: 140px;	
+    border-bottom: 1px dotted #FFFFFF;
+}
+
+#menu a:hover{
+	background: #CA5A10;
+}
+
+#cupones{
+    overflow: hidden;
+	width: 80%;
+	float:left;
+}
+
+.secciones_panel{
+    margin: 20px 0 0 50px;
+}
+
+#crear_cupones{
+	width:100%;
+}
+
+.secciones_panel h1{
+	font-size: 20px;
+	font-weight:bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+	border-bottom:1px solid;
+	width:90%;
+}
+
+#crear_cupones form{
+	width:320px;
+}
+
+#motel_user{
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 20px;    
+}
+
+#crear_cupones p{
+    font-weight: bold;
+    margin: 10px 0;	
+}
+
+#crear_cupones label, #filtros label{
+	display:block;
+	margin-bottom:5px;
+}
+
+#filtros span{
+	display:block;
+	width:150px;
+}
+
+#crear_cupones label input{
+	width:50px;
+}
+
+#crear_cupones label span{
+    display: block;
+    float: left;
+    margin-top: 3px;
+    width: 200px;
+}
+
+.txt{
+	width:300px;
+	margin-bottom:20px;
+}
+
+.txt2{
+	width:150px;
+	margin-bottom:10px;
+}
+
+textarea.txt{
+    height: 100px;
+    resize: none;
+}
+
+#editar_cupones{
+	display:none;
+}
+
+#resultados{
+	margin-top: 30px;
+	overflow: hidden;
+	width: 100%;
+	float: left;
+}
+
+.elemento{
+    border-bottom: 1px dotted #CCCCCC;
+    float: left;
+    padding: 10px 0;
+    width: 98%;	
+}
+
+.elemento span{
+    display: block;
+    float: left;
+    padding: 0 5px;
+	height: 15px;
+}
+
+.col2{
+  width: 100px;	
+}
+
+.col4{
+    width: 190px;	
+}
+
+input.col4{
+	float:left;
+	padding: 0 5px;	
+}
+
+.col1,.col3{
+    text-align: center;
+    width: 70px;	
+}
+
+.col5{
+	text-align:center;
+	width:100px;
+}
+
+.col6{
+   width: 90px;	
+}
+
+.col7{
+	width: 50px;
+}
+
+.gray{
+	background:#999;
+}
+
+.line{
+    border-bottom: 1px solid;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.elemento a, #imprimir_btn {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:12px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+    margin-left: 5px;	
+}
+
+#imprimir{
+	width: 98%;
+	float: left;
+	margin-top: 20px;
+}
+
+#imprimir_btn{
+	float:right;
+}
+
+.elemento a:hover, #imprimir_btn:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}
+
+.elemento a:active, #imprimir_btn:active {
+	position:relative;
+	top:1px;
+}
+
+#auth{
+    border: 1px solid;
+    left: 50%;
+    margin: -120px 0 0 -100px;
+    padding: 50px;
+    position: absolute;
+    top: 50%;
+    width: 330px;
+}
+
+#auth h1{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 45px;    
+}
+
+#auth label{
+    display: block;
+    margin-bottom: 18px;    
+}
+
+/*PARA IMPRESION*/
+@media print {
+  #menu, #crear_cupones, #editar_cupones h1, #filtros, #imprimir  {
+	  display:none;
+  }
+}
