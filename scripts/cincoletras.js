@@ -71,7 +71,7 @@ $(document).ready(function(){
                         failure: curl + "index.php?seccion=home&d=e&c=" + cupon,
                         pending: curl + "index.php?seccion=home&d=p&c=" + cupon
                     }).done(function(data){
-                        $("#boton-mercado-pago a").attr("href",data.response.sandbox_init_point);
+                        $("#boton-mercado-pago a").attr("href",data.response.init_point);
                         $("#boton-mercado-pago").show();
                     });                
                 
