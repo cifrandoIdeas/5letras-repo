@@ -41,6 +41,8 @@ $(document).ready(function(){
 	
 	$(".btn_comprar").click(function(e){
 		e.preventDefault();	
+                $("#boton-mercado-pago").hide();
+                $("#boton-mercado-pago a").attr("href","");
 		ventana("#correo_mail");
                 cupon=$(this).attr("id");
                 precio=$(".precio span",$(this).parent().parent()).text().replace(/^\s+|\s+$/g,"").substr(1) + ".00";
@@ -59,6 +61,19 @@ $(document).ready(function(){
                 $('input[name="amount"]').val(precio); 	
                 
                 //Aqui se mandara el codigo para mercado pago
+                
+                    $.get("/scripts/GetMercadoPagoButton.php",{
+                        titulo: "Ticket CincoLetras.mx :: Motel "+ motel + " - Cupon " + cupon,
+                        cupon: cupon,
+                        precio: $(".precio span",$(this).parent().parent()).text().replace(/^\s+|\s+$/g,"").substr(1),
+                        motel: motel,
+                        success: curl +"index.php?seccion=home&d=o&c=" + cupon,
+                        failure: curl + "index.php?seccion=home&d=e&c=" + cupon,
+                        pending: curl + "index.php?seccion=home&d=p&c=" + cupon
+                    }).done(function(data){
+                        $("#boton-mercado-pago a").attr("href",data.response.sandbox_init_point);
+                        $("#boton-mercado-pago").show();
+                    });                
                 
 		});
 
@@ -160,6 +175,35 @@ $(document).ready(function(){
                     }
              return false;
             });		
+        
+        //mercado pago button
+        $("#boton-mercado-pago a").click(function(){  
+            var boton = this;
+            if(!IsValidEmail($("#mail_compra2").val()))
+                    {                    
+                    alert("Debes ingresar un correo valido ");                    
+                    return false;
+                    }
+             else
+                    {
+                    $.post("scripts/email_comprador.php",
+                        {
+                        email : $("#mail_compra2").val(), 
+                        cupon : cupon
+                        },function(data){
+                            if(data=="0")
+                                {
+                                alert("Algo ha salido mal, vuelve a intentarlo");
+                                window.location.reload();
+                                }
+                            else
+                                {
+                                window.location.href = $(boton).attr("href");
+                                }
+                            });
+                    }
+               return false;
+            });	            
 		
         if(msg!=0)
            {             

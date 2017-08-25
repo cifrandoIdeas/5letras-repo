@@ -361,19 +361,28 @@ textarea.text{
 }
 
 .popup{
-	background:url(../images/5letras_logo.jpg) no-repeat #fff 10px -15px;
-	width:528px;
-	height:234px;
-	display:none;
-	font-size:13px;
-	line-height:20px;
+    background:url(../images/5letras_logo.jpg) no-repeat #fff 10px -15px;
+    width:550px;
+    height:260px;
+    display:none;
+    font-size:13px;
+    line-height:20px;
+    padding: 10px;
 }
 
 #simplemodal-overlay {background-color:#000;}
 /*#simplemodal-container {background-color:#333; border:8px solid #444; padding:12px;}*/
 
 #correo_mail p{
-	margin-top:50px;
+    margin: 10px 0 10px 0;    
+}
+
+#correo_mail p span{
+    display: block;
+    color: #E06402;
+    font-size: 11px;
+    line-height: 15px;
+    margin-top: 5px;
 }
 
 .right{
@@ -394,7 +403,12 @@ textarea.text{
 }
 
 .boton{
-    margin: 10px 15px 0 200px;
+    margin: 20px 15px 0 200px;
+}
+
+.boton + img{
+    float: right;
+    padding: 10px 50px;    
 }
 
 .condiciones{
@@ -446,7 +460,7 @@ textarea.text{
     width: 100%;
 }
 
-#forma_dineromail > span, #forma_paypal > span{
+#po_dineromail > span, #forma_paypal > span{
     bottom: 55px;
     color: #E06402;
     font-size: 11px;
@@ -456,6 +470,12 @@ textarea.text{
     position: absolute;
     text-align: center;
     width: 140px;
+}
+
+#forma_paypal{
+    overflow: hidden;
+    width: 314px;
+    float: right;    
 }
 
 #share_motel{
@@ -478,4 +498,36 @@ textarea.text{
     margin: 0 22px 10px 0;
     padding: 5px;
     width: 294px;
+}
+
+#boton-mercado-pago{
+    position: absolute;
+    width: auto;
+    bottom: 36px;
+    right: 200px;  
+}
+
+#boton-mercado-pago img{
+    display: block;
+    width: 100px;
+}
+
+#boton-mercado-pago a{
+    border-radius: 7px;
+    
+    display: inline-block;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(41, 62, 117) 1px 1px;
+    margin: 10px;
+    text-decoration: none;
+    padding: 0px 20px;
+    background: url(https://secure.mlstatic.com/mptools/assets/MP-payButton-blue.png) rgb(40, 83, 111);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(41, 62, 117);
+    border-image: initial;    
+    
 }
