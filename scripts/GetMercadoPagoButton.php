@@ -16,7 +16,7 @@ if (isset($_GET['titulo']) &&
 
     $titulo = filter_input(INPUT_GET, 'titulo');
     $cupon = filter_input(INPUT_GET, 'cupon');
-    $precio = filter_input(INPUT_GET, 'precio', FILTER_VALIDATE_INT);
+    $precio = filter_input(INPUT_GET, 'precio', FILTER_VALIDATE_FLOAT);
     $motel = filter_input(INPUT_GET, 'motel');
     $success = filter_input(INPUT_GET, 'success');
     $failure = filter_input(INPUT_GET, 'failure');
