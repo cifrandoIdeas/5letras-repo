@@ -45,7 +45,7 @@ if (isset($_POST['accion'])) {
 
         //Envio del ticket al usuario
         $res = $dbh->query("SELECT * FROM cupones,moteles WHERE id_motel = idmotel AND id_cupon = '$cupon'");
-        $arr = res->fetch_assoc();
+        $arr = $res->fetch_assoc();
 
         // email de destino
         $email = $arr['correo_usuario'];

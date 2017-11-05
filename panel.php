@@ -9,7 +9,7 @@ if (isset($_GET['salir'])) {
 
 //usuarios
 if (isset($_POST['user'])) {
-    $usuario = mysql_real_escape_string($_POST['user']);
+    $usuario = $dbh->real_escape_string($_POST['user']);
 
     if ($usuario != "admin147") {
         $result = $dbh->query("SELECT * FROM moteles2 WHERE pass LIKE '$usuario'");

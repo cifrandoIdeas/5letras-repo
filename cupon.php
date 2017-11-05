@@ -3,7 +3,7 @@ if (!isset($_GET['id']))
     header("location: index.php");
 
 include "scripts/lib.php";
-$id_cupon = mysql_real_escape_string(substr($_GET['id'], 1));
+$id_cupon = $dbh->real_escape_string(substr($_GET['id'], 1));
 
 $query = "SELECT * FROM cupones,moteles WHERE cupones.id_motel = moteles.idmotel AND id_cupon = '" . $id_cupon . "'";
 
