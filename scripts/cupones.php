@@ -10,12 +10,12 @@ if (isset($_POST['accion'])) {
     $cupon = $_POST['cupon'];
 
     if ($accion == "check_in") {
-        if (!mysql_query("UPDATE `cupones` SET `checked_in` = '1' WHERE `id_cupon` = '$cupon'"))
+        if (!$dbh->query("UPDATE `cupones` SET `checked_in` = '1' WHERE `id_cupon` = '$cupon'"))
             echo 0;
     }
 
     if ($accion == "uncheck_in") {
-        if (!mysql_query("UPDATE `cupones` SET `comprado` = '0', `fecha_venc` = '', correo_usuario = '' WHERE `id_cupon` = '$cupon'"))
+        if (!$dbh->query("UPDATE `cupones` SET `comprado` = '0', `fecha_venc` = '', correo_usuario = '' WHERE `id_cupon` = '$cupon'"))
             echo 0;
     }
 
@@ -24,12 +24,12 @@ if (isset($_POST['accion'])) {
         if ($descuento < 0 || $descuento > 100)
             echo 0;
         else
-        if (!mysql_query("UPDATE `cupones` SET `descuento` = '$descuento' WHERE `id_cupon` = '$cupon'"))
+        if (!$dbh->query("UPDATE `cupones` SET `descuento` = '$descuento' WHERE `id_cupon` = '$cupon'"))
             echo 0;
     }
 
     if ($accion == "eliminar") {
-        if (!mysql_query("DELETE FROM `cupones` WHERE `id_cupon` = '$cupon'"))
+        if (!$dbh->query("DELETE FROM `cupones` WHERE `id_cupon` = '$cupon'"))
             echo 0;
     }
 
@@ -41,11 +41,11 @@ if (isset($_POST['accion'])) {
         $fecha_venc = date("Y-m-d", mktime(0, 0, 0, date("m") + 1, date("d"), date("Y")));
 
         //compra guardada y fecha de vencimiento
-        mysql_query("UPDATE `cupones` SET `comprado` = '1', `fecha_venc` = '$fecha_venc', correo_usuario = '$correo_user' WHERE `id_cupon` = '$cupon'");
+        $dbh->query("UPDATE `cupones` SET `comprado` = '1', `fecha_venc` = '$fecha_venc', correo_usuario = '$correo_user' WHERE `id_cupon` = '$cupon'");
 
         //Envio del ticket al usuario
-        $res = mysql_query("SELECT * FROM cupones,moteles WHERE id_motel = idmotel AND id_cupon = '$cupon'");
-        $arr = mysql_fetch_assoc($res);
+        $res = $dbh->query("SELECT * FROM cupones,moteles WHERE id_motel = idmotel AND id_cupon = '$cupon'");
+        $arr = res->fetch_assoc();
 
         // email de destino
         $email = $arr['correo_usuario'];
@@ -152,8 +152,8 @@ if ($seek != "") {
 }
 $cont = "";
 $x = 0;
-$resul = mysql_query($sql);
-if (mysql_num_rows($resul)) {
+$resul = $dbh->query($sql);
+if ($resul->num_rows) {
     $cont.='
 		<div class="elemento line">
 			<span class="col1">
@@ -179,7 +179,7 @@ if (mysql_num_rows($resul)) {
 			</span>					
 		</div>';
 }
-while ($arr = mysql_fetch_assoc($resul)) {
+while ($arr = $resul->fetch_array()) {
     $class = "";
     if (($x % 2) == 0)
         $class = ' gray';
@@ -192,8 +192,8 @@ while ($arr = mysql_fetch_assoc($resul)) {
 			<span class="col2">
 				';
 
-    $r = mysql_query("SELECT * FROM `moteles` WHERE idmotel = " . $arr['id_motel']);
-    $a = mysql_fetch_assoc($r);
+    $r = $dbh->query("SELECT * FROM `moteles` WHERE idmotel = " . $arr['id_motel']);
+    $a = $r->fetch_assoc();
     $cont.= $a['nombre'];
 
     $cont.= '

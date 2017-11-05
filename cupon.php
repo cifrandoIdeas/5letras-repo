@@ -7,8 +7,8 @@ $id_cupon = mysql_real_escape_string(substr($_GET['id'], 1));
 
 $query = "SELECT * FROM cupones,moteles WHERE cupones.id_motel = moteles.idmotel AND id_cupon = '" . $id_cupon . "'";
 
-$res = mysql_query($query);
-$arr = mysql_fetch_assoc($res);
+$res = $dbh->query($query);
+$arr = $res->fetch_assoc();
 
 if ($arr['comprado'] != "1" || $arr['checked_in'] == "1") {
 

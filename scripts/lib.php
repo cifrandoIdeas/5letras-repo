@@ -1,7 +1,8 @@
 ﻿<?php
+//$dbh = mysql_connect("localhost", "nektuzco_5letras", "CincoLetras5") or die('Error de conexión: ' . mysql_error());
+//mysql_select_db("nektuzco_cincoletras");
 
-$dbh = mysql_connect("localhost", "nektuzco_5letras", "CincoLetras5") or die('Error de conexión: ' . mysql_error());
-mysql_select_db("nektuzco_cincoletras");
+$dbh = new mysqli("localhost", "nektuzco_5letras", "CincoLetras5", "nektuzco_cincoletras");
 
 function randomString($length) {
     $string = md5(time());

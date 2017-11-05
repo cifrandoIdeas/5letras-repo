@@ -12,11 +12,11 @@ if (isset($_POST['user'])) {
     $usuario = mysql_real_escape_string($_POST['user']);
 
     if ($usuario != "admin147") {
-        $result = mysql_query("SELECT * FROM moteles2 WHERE pass LIKE '$usuario'");
-        if (!mysql_num_rows($result)) {
+        $result = $dbh->query("SELECT * FROM moteles2 WHERE pass LIKE '$usuario'");
+        if (!$result->num_rows) {
             header('Location: panel.php?mensaje=' . urlencode("Usuario no existe"));
         } else {
-            $arr = mysql_fetch_assoc($result);
+            $arr = $result->fetch_assoc();
             $_SESSION['usuario'] = $usuario;
             $_SESSION['tipo'] = "user";
             $_SESSION['motel'] = $arr['id_motel'];
@@ -58,7 +58,7 @@ if (isset($_POST['condiciones'])) {
         for ($x = 0; $x < $sencillas; $x++) {
             do {
                 $id_cupon = randomString(5);
-            } while (!mysql_query("INSERT INTO `cupones` (`id_cupon`, `id_motel`, `tipo`, `condiciones_uso`, `facturacion`, `precio`) 
+            } while (!$dbh->query("INSERT INTO `cupones` (`id_cupon`, `id_motel`, `tipo`, `condiciones_uso`, `facturacion`, `precio`) 
 							VALUES ('$id_cupon', '$id_motel', 'sencilla', '$condiciones','$facturacion','$precio_sencillas');"));
         }
     }
@@ -66,7 +66,7 @@ if (isset($_POST['condiciones'])) {
     if (is_numeric($jacuzzi)) {
         for ($x = 0; $x < $jacuzzi; $x++) {
             $id_cupon = randomString(5);
-            mysql_query("INSERT INTO `cupones` (`id_cupon`, `id_motel`, `tipo`, `condiciones_uso`, `facturacion`, `precio`) 
+            $dbh->query("INSERT INTO `cupones` (`id_cupon`, `id_motel`, `tipo`, `condiciones_uso`, `facturacion`, `precio`) 
 							VALUES ('$id_cupon', '$id_motel', 'jacuzzi', '$condiciones','$facturacion','$precio_jacuzzi');");
         }
     }
@@ -76,7 +76,7 @@ if (isset($_POST['condiciones'])) {
         for ($x = 0; $x < $premium; $x++) {
             do {
                 $id_cupon = randomString(5);
-            } while (!mysql_query("INSERT INTO `cupones` (`id_cupon`, `id_motel`, `tipo`, `condiciones_uso`, `facturacion`, `precio`) 
+            } while (!$dbh->query("INSERT INTO `cupones` (`id_cupon`, `id_motel`, `tipo`, `condiciones_uso`, `facturacion`, `precio`) 
 							VALUES ('$id_cupon', '$id_motel', 'premium', '$condiciones','$facturacion','$precio_premium');"));
         }
     }
@@ -84,7 +84,7 @@ if (isset($_POST['condiciones'])) {
     if (is_numeric($dobles)) {
         for ($x = 0; $x < $dobles; $x++) {
             $id_cupon = randomString(5);
-            mysql_query("INSERT INTO `cupones` (`id_cupon`, `id_motel`, `tipo`, `condiciones_uso`, `facturacion`, `precio`) 
+            $dbh->query("INSERT INTO `cupones` (`id_cupon`, `id_motel`, `tipo`, `condiciones_uso`, `facturacion`, `precio`) 
 							VALUES ('$id_cupon', '$id_motel', 'doble', '$condiciones','$facturacion','$precio_dobles');");
         }
     }
@@ -407,8 +407,8 @@ if ($tipo == "user") {
                             <select id="select_motel" name="select_motel" class="txt">
                                 <option value="-1">Selecciona motel</option>
                                 <?php
-                                $result = mysql_query("SELECT * FROM `moteles`");
-                                while ($arr = mysql_fetch_assoc($result)) {
+                                $result = $dbh->query("SELECT * FROM `moteles`");
+                                while ($arr = $result->fetch_assoc()) {
                                     echo '<option value="' . $arr['idmotel'] . '">' . $arr['nombre'] . '</option>';
                                 }
                                 ?>
@@ -520,16 +520,16 @@ if ($tipo == "user") {
                                     <select id="id_motel" name="id_motel" class="txt2">
                                         <option value="-1">Cualquiera</option>
                                         <?php
-                                        $result = mysql_query("SELECT * FROM `moteles`");
-                                        while ($arr = mysql_fetch_assoc($result)) {
+                                        $result = $dbh->query("SELECT * FROM `moteles`");
+                                        while ($arr = $result->fetch_assoc()) {
                                             echo '<option value="' . $arr['idmotel'] . '">' . $arr['nombre'] . '</option>';
                                         }
                                         ?>
                                     </select>
                                     <?php
                                 } else {
-                                    $result = mysql_query("SELECT * FROM `moteles` WHERE idmotel = $motel");
-                                    while ($arr = mysql_fetch_assoc($result)) {
+                                    $result = $dbh->query("SELECT * FROM `moteles` WHERE idmotel = $motel");
+                                    while ($arr = $result->fetch_assoc()) {
                                         echo '
                                             <span id="motel_user">' . $arr['nombre'] . '</span>
                                             <input type="hidden" id="id_motel" name="id_motel" value="' . $arr['idmotel'] . '"/>';
