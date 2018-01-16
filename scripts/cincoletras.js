@@ -62,18 +62,18 @@ $(document).ready(function(){
                 
                 //Aqui se mandara el codigo para mercado pago
                 
-                    $.get("/scripts/GetMercadoPagoButton.php",{
-                        titulo: "Ticket CincoLetras.mx :: Motel "+ motel + " - Cupon " + cupon,
-                        cupon: cupon,
-                        precio: $(".precio span",$(this).parent().parent()).text().replace(/^\s+|\s+$/g,"").substr(1),
-                        motel: motel,
-                        success: curl +"index.php?seccion=home&d=o&c=" + cupon,
-                        failure: curl + "index.php?seccion=home&d=e&c=" + cupon,
-                        pending: curl + "index.php?seccion=home&d=p&c=" + cupon
-                    }).done(function(data){
-                        $("#boton-mercado-pago a").attr("href",data.response.init_point);
-                        $("#boton-mercado-pago").show();
-                    });                
+//                    $.get("/scripts/GetMercadoPagoButton.php",{
+//                        titulo: "Ticket CincoLetras.mx :: Motel "+ motel + " - Cupon " + cupon,
+//                        cupon: cupon,
+//                        precio: $(".precio span",$(this).parent().parent()).text().replace(/^\s+|\s+$/g,"").substr(1),
+//                        motel: motel,
+//                        success: curl +"index.php?seccion=home&d=o&c=" + cupon,
+//                        failure: curl + "index.php?seccion=home&d=e&c=" + cupon,
+//                        pending: curl + "index.php?seccion=home&d=p&c=" + cupon
+//                    }).done(function(data){
+//                        $("#boton-mercado-pago a").attr("href",data.response.init_point);
+//                        $("#boton-mercado-pago").show();
+//                    });                
                 
 		});
 
@@ -111,9 +111,9 @@ $(document).ready(function(){
 		e.preventDefault();	
 		$("#mensaje").html($(".condiciones").html());
 		ventana("#ventana_mensaje");
-		});
+		});                           
          
-	$("#comofunciona").click(function(e){
+	$("#comofunciona, .btn_terminos").click(function(e){
 		e.preventDefault();	
 		ventana("#condiciones_uso");
 		});         
