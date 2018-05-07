@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $dbh = new mysqli("localhost", "nektuzco_5letras", "CincoLetras5", "nektuzco_cincoletras");
 
 $temp = explode("index.php", filter_input(INPUT_ENV, "REQUEST_URI"));

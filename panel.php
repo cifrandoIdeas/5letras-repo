@@ -14,7 +14,11 @@ if (isset($_POST['user'])) {
     if ($usuario != "admin147") {
         $result = $dbh->query("SELECT * FROM moteles2 WHERE pass LIKE '$usuario'");
         if (!$result->num_rows) {
-            header('Location: panel.php?mensaje=' . urlencode("Usuario no existe"));
+            echo "
+                <script>
+                location.href = 'panel.php?mensaje=" . urlencode("Usuario no existe"). "&accion=404';
+                </script>
+            ";
         } else {
             $arr = $result->fetch_assoc();
             $_SESSION['usuario'] = $usuario;
@@ -109,16 +113,24 @@ if (isset($_POST['condiciones'])) {
         <link rel="stylesheet" href="css/panel.css" type="text/css" />
 
         <style type="text/css">
-<?php
-if ($tipo == "user") {
-    echo '.elemento a.eliminar{
-                    display: none;
-                    }';
-}
-?>
+            <?php
+                if ($tipo == "user") {
+                    echo '.elemento a.eliminar{
+                                    display: none;
+                                    }';
+                }
+            ?>
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript">
+            <?php
+                if(filter_input(INPUT_GET,'accion') == 404){
+                    echo "
+                        alert('Usuario no existe');
+                ";
+                }
+            ?>
+
             $(document).ready(function() {
 
                 $("#crear_cupones form").submit(function() {
@@ -340,14 +352,14 @@ if ($tipo == "user") {
                     }
                 });
 
-<?php
-if ($mensaje != "") {
-    echo 'alert("' . $mensaje . '");';
-}
-if ($tipo == "user") {
-    echo '$("#editar").trigger("click");';
-}
-?>
+                <?php
+                if ($mensaje != "") {
+                    echo 'alert("' . $mensaje . '");';
+                }
+                if ($tipo == "user") {
+                    echo '$("#editar").trigger("click");';
+                }
+                ?>
 
             });
 
@@ -407,10 +419,12 @@ if ($tipo == "user") {
                             <select id="select_motel" name="select_motel" class="txt">
                                 <option value="-1">Selecciona motel</option>
                                 <?php
-                                $result = $dbh->query("SELECT * FROM `moteles`");
-                                while ($arr = $result->fetch_assoc()) {
-                                    echo '<option value="' . $arr['idmotel'] . '">' . $arr['nombre'] . '</option>';
-                                }
+                                    $result = $dbh->query("SELECT * FROM `moteles`");
+                                    if($result->num_rows > 0){
+                                        while ($arr = $result->fetch_assoc()) {
+                                            echo '<option value="' . $arr['idmotel'] . '">' . $arr['nombre'] . '</option>';
+                                        }
+                                    }
                                 ?>
                             </select>
 
@@ -521,18 +535,22 @@ if ($tipo == "user") {
                                         <option value="-1">Cualquiera</option>
                                         <?php
                                         $result = $dbh->query("SELECT * FROM `moteles`");
-                                        while ($arr = $result->fetch_assoc()) {
-                                            echo '<option value="' . $arr['idmotel'] . '">' . $arr['nombre'] . '</option>';
+                                        if($result->num_rows > 0){
+                                            while ($arr = $result->fetch_assoc()) {
+                                                echo '<option value="' . $arr['idmotel'] . '">' . $arr['nombre'] . '</option>';
+                                            }
                                         }
                                         ?>
                                     </select>
                                     <?php
                                 } else {
                                     $result = $dbh->query("SELECT * FROM `moteles` WHERE idmotel = $motel");
-                                    while ($arr = $result->fetch_assoc()) {
-                                        echo '
-                                            <span id="motel_user">' . $arr['nombre'] . '</span>
-                                            <input type="hidden" id="id_motel" name="id_motel" value="' . $arr['idmotel'] . '"/>';
+                                    if($result->num_rows > 0){
+                                        while ($arr = $result->fetch_assoc()) {
+                                            echo '
+                                                <span id="motel_user">' . $arr['nombre'] . '</span>
+                                                <input type="hidden" id="id_motel" name="id_motel" value="' . $arr['idmotel'] . '"/>';
+                                        }
                                     }
                                 }
                                 ?>                                
