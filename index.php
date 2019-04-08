@@ -121,39 +121,22 @@ setlocale(LC_TIME, "es_MX");
     <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
 
     <!-- Google Tag Manager -->
-
-    <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start':
-
-                    new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-
-        })(window, document, 'script', 'dataLayer', 'GTM-T8RBSLD');
-    </script>
-
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T8RBSLD');</script>
     <!-- End Google Tag Manager -->
 
 </head>
 
 <body>
+
     <!-- Google Tag Manager (noscript) -->
-
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8RBSLD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8RBSLD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <div id="header" class="div_principales">
 
         <div class="content">
