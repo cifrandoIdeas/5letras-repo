@@ -122,11 +122,13 @@ if ($arr['comprado'] != "1" || $arr['checked_in'] == "1") {
                 </p>   
                 <p id="fecha">                
                     <?php
-                    if (strpos($arr['fecha_venc'], "-") === false) {
+                    if (strpos($arr['fecha_venc'], "-") === false && trim($arr['fecha_venc']) != '' ) {
                         $arr['fecha_venc'] = date("Y-m-d", $arr['fecha_venc']);
                     }
-                    $f = explode("-", $arr['fecha_venc']);
-                    echo $f[2] . "/" . $f[1] . "/" . $f[0];
+                    if(strpos($arr['fecha_venc'], "-") !== false) {
+                        $f = explode("-", $arr['fecha_venc']);
+                        echo $f[2] . "/" . $f[1] . "/" . $f[0];
+                    }
                     ?>                
                 </p>             
             </div>
